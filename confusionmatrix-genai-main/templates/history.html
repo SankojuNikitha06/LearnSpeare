@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% set title = "LearnSphere — History" %}
+
+{% block content %}
+  <div class="hero">
+    <h1>Your activity</h1>
+    <p>Text, code, audio, and visual explanations you've generated.</p>
+  </div>
+
+  <div class="history-toolbar">
+    <label for="historyFilter">Filter</label>
+    <select id="historyFilter" class="input">
+      <option value="">All</option>
+      <option value="text">Text</option>
+      <option value="code">Code</option>
+      <option value="audio">Audio</option>
+      <option value="images">Visuals</option>
+    </select>
+    <button id="historyRefresh" class="btn primary" type="button">Refresh</button>
+    <button id="historyClearAll" class="btn" type="button">Clear all</button>
+  </div>
+
+  <div id="historyClearConfirm" class="history-confirm" role="dialog" aria-labelledby="historyClearConfirmTitle" aria-modal="true" hidden>
+    <p id="historyClearConfirmTitle" class="history-confirm-message">Clear all history? This cannot be undone.</p>
+    <div class="btn-row">
+      <button type="button" id="historyClearConfirmCancel" class="btn">Cancel</button>
+      <button type="button" id="historyClearConfirmOk" class="btn danger">Clear all</button>
+    </div>
+  </div>
+
+  <div id="historyList" class="history-list">
+    <p class="muted">Loading…</p>
+  </div>
+  <div id="historyEmpty" class="history-empty" style="display:none;">
+    <p class="muted">No history yet. Generate some text, code, audio, or visuals to see them here.</p>
+  </div>
+
+  <div id="lightbox" class="lightbox" aria-hidden="true">
+    <div class="lightbox-backdrop"></div>
+    <button type="button" class="lightbox-prev" aria-label="Previous image">‹</button>
+    <img id="lightbox-img" class="lightbox-img" src="" alt="Enlarged view"/>
+    <button type="button" class="lightbox-next" aria-label="Next image">›</button>
+    <span class="lightbox-counter" id="lightboxCounter"></span>
+    <button type="button" class="lightbox-close" aria-label="Close">×</button>
+  </div>
+{% endblock %}
+
+{% block scripts %}
+  <script src="{{ url_for('static', filename='js/history.js') }}"></script>
+{% endblock %}

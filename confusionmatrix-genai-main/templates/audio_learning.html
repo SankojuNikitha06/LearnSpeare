@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% set title = "LearnSphere — Audio Learning" %}
+
+{% block content %}
+  <div class="hero">
+    <h1>Audio Lessons</h1>
+    <p>Generate a spoken ML lesson (script + MP3 using gTTS).</p>
+  </div>
+
+  <form id="audioForm" class="form">
+    <div class="row">
+      <div>
+        <label for="topic">ML topic</label>
+        <input id="topic" class="input" placeholder="e.g., decision trees, gradient descent, overfitting" required/>
+      </div>
+      <div>
+        <label for="length">Length</label>
+        <select id="length">
+          <option value="brief" selected>Brief (1-2 min)</option>
+          <option value="standard">Standard (3-5 min)</option>
+          <option value="detailed">Detailed (6-8 min)</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="btn-row" style="margin-top:12px">
+      <button id="generateBtn" class="btn primary" type="submit">Generate Audio</button>
+      <a id="downloadLink" class="btn success" style="display:none" href="#">Download MP3</a>
+    </div>
+    <p id="audioMessage" class="audio-message" role="alert" aria-live="polite"></p>
+  </form>
+
+  <div class="result">
+    <div id="appliedBadge" class="applied-badge" style="display:none;"></div>
+    <h2>Audio Player</h2>
+    <div class="audio-player-wrap">
+      <audio id="player" controls></audio>
+      <label for="speedSelect" class="speed-label-inline">Speed</label>
+      <select id="speedSelect" class="speed-select">
+        <option value="0.5">0.5×</option>
+        <option value="0.75">0.75×</option>
+        <option value="1" selected>1×</option>
+        <option value="1.25">1.25×</option>
+        <option value="1.5">1.5×</option>
+        <option value="1.75">1.75×</option>
+        <option value="2">2×</option>
+      </select>
+    </div>
+
+    <h2 style="margin-top:14px">Script</h2>
+    <pre><code id="script"></code></pre>
+  </div>
+{% endblock %}
+
+{% block scripts %}
+  <script src="{{ url_for('static', filename='js/audio_learning.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% set title = "LearnSphere — Visual Learning Aids" %}
+
+{% block content %}
+  <div class="hero">
+    <h1>Visual Learning Aids</h1>
+    <p>Generate ML concept diagrams (flowcharts, architecture) with Gemini.</p>
+  </div>
+
+  <form id="imgForm" class="form">
+    <div class="row">
+      <div>
+        <label for="topic">ML concept</label>
+        <input id="topic" class="input" placeholder="e.g., gradient descent, decision tree splitting, neural network layers" required/>
+      </div>
+    </div>
+
+    <div class="btn-row" style="margin-top:12px">
+      <button id="generateBtn" class="btn primary" type="submit">Generate Visuals</button>
+    </div>
+    <div id="visualsMessage" class="visuals-message" aria-live="polite" hidden></div>
+  </form>
+
+  <div class="result">
+    <div id="appliedBadge" class="applied-badge" style="display:none;"></div>
+
+    <h2 style="margin-top:14px">Gallery</h2>
+    <p class="muted" style="margin-top:0">Click an image to view it larger.</p>
+    <div id="gallery" class="image-gallery">
+      <!-- images injected -->
+    </div>
+  </div>
+
+  <div id="lightbox" class="lightbox" aria-hidden="true">
+    <div class="lightbox-backdrop"></div>
+    <button type="button" class="lightbox-prev" aria-label="Previous image">‹</button>
+    <img id="lightbox-img" class="lightbox-img" src="" alt="Enlarged view"/>
+    <button type="button" class="lightbox-next" aria-label="Next image">›</button>
+    <span class="lightbox-counter" id="lightboxCounter"></span>
+    <button type="button" class="lightbox-close" aria-label="Close">×</button>
+  </div>
+{% endblock %}
+
+{% block scripts %}
+  <script src="{{ url_for('static', filename='js/image_visualization.js') }}"></script>
+{% endblock %}

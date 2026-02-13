@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% set title = "LearnSphere — Text Explanations" %}
+
+{% block content %}
+  <div class="hero">
+    <h1>Text Explanation</h1>
+    <p>Get structured explanations of ML concepts (markdown) at your chosen depth.</p>
+  </div>
+
+  <form id="textForm" class="form">
+    <div class="row">
+      <div>
+        <label for="topic">ML concept to learn</label>
+        <input id="topic" class="input" placeholder="e.g., backpropagation, decision trees, bias-variance tradeoff" />
+      </div>
+      <div>
+        <label for="depth">Depth</label>
+        <select id="depth">
+          <option value="brief">Brief</option>
+          <option value="standard" selected>Standard</option>
+          <option value="detailed">Detailed</option>
+          <option value="comprehensive">Comprehensive</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="btn-row" style="margin-top:12px">
+      <button id="generateBtn" class="btn primary" type="submit">Generate Explanation</button>
+      <button id="copyBtn" class="btn" type="button">Copy Markdown</button>
+      <a class="btn" href="{{ url_for('settings_page') }}">API Key Settings</a>
+    </div>
+    <div id="textMessage" class="text-message" aria-live="polite" role="alert" hidden></div>
+  </form>
+
+  <div class="result">
+    <div id="appliedBadge" class="applied-badge" style="display:none;"></div>
+    <h2>Output</h2>
+    <div id="output" class="muted">Your explanation will appear here.</div>
+    <div id="sourcesWrap" class="sources-wrap" style="display:none; margin-top:1.5rem;">
+      <h3 style="margin-bottom:0.5rem;">Sources (scikit-learn docs, experimental)</h3>
+      <div id="sources" class="sources-list"></div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block scripts %}
+  <script src="{{ url_for('static', filename='js/text_explanation.js') }}"></script>
+{% endblock %}

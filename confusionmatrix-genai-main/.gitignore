@@ -1,0 +1,9 @@
+.venv/
+__pycache__/
+*.pyc
+.env
+storage/generated_code/*
+storage/generated_audio/*
+storage/generated_images/*
+storage/history.db
+uploads/*

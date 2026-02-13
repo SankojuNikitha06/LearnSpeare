@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>{{ title or "LearnSphere" }}</title>
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/learnsphere-icon.png') }}"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"/>
+</head>
+<body>
+  <div class="navbar" id="navbar">
+    <div class="navbar-inner">
+      <div class="brand">
+        <img class="brand-badge brand-badge-img" src="{{ url_for('static', filename='images/learnsphere-icon.png') }}" alt="" width="36" height="36"/>
+        <div>LearnSphere</div>
+      </div>
+      <button type="button" class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navlinks">
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </button>
+      <div class="navlinks" id="navlinks">
+        <a href="{{ url_for('home') }}">Home</a>
+        <a href="{{ url_for('text_explanation_page') }}">Text</a>
+        <a href="{{ url_for('code_generation_page') }}">Code</a>
+        <a href="{{ url_for('audio_learning_page') }}">Audio</a>
+        <a href="{{ url_for('image_visualization_page') }}">Visuals</a>
+        <a href="{{ url_for('history_page') }}">History</a>
+        <a href="{{ url_for('settings_page') }}">Settings</a>
+        <a href="{{ url_for('about_page') }}">About</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    {% block content %}{% endblock %}
+
+    <div class="footer">
+      <p class="footer-main">Built with Flask + Gemini + gTTS. Artifacts are stored locally under <code>storage/</code>.</p>
+      <p class="footer-sub">Content is personalized to your learning level. Enable experimental RAG (scikit-learn) in Settings to ground text answers with docs.</p>
+    </div>
+  </div>
+
+  <div id="toast" class="toast"></div>
+
+  <div id="onboardingModal" class="onboarding-modal" aria-hidden="true">
+    <div class="onboarding-backdrop"></div>
+    <div class="onboarding-card">
+      <h2>Welcome to LearnSphere</h2>
+      <p class="onboarding-sub">A quick setup so we can personalize your experience.</p>
+      <form id="onboardingForm" class="onboarding-form">
+        <div>
+          <label for="onboardingLevel">What's your learning level?</label>
+          <select id="onboardingLevel" class="input" required>
+            <option value="beginner">Beginner</option>
+            <option value="intermediate" selected>Intermediate</option>
+            <option value="advanced">Advanced</option>
+          </select>
+        </div>
+        <div>
+          <label for="onboardingFocus">What do you want to focus on?</label>
+          <select id="onboardingFocus" class="input">
+            <option value="concepts">ML concepts &amp; theory</option>
+            <option value="code">Code &amp; implementation</option>
+            <option value="both" selected>Both</option>
+          </select>
+        </div>
+        <label class="checkbox-label" style="margin-top:10px">
+          <input type="checkbox" id="onboardingRag"/>
+          <span>Experimental: Ground text answers with scikit-learn docs</span>
+        </label>
+        <div class="btn-row" style="margin-top:16px">
+          <button type="submit" class="btn primary">Continue</button>
+          <button type="button" id="onboardingSkip" class="btn">Skip for now</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='js/profile.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/onboarding.js') }}"></script>
+  {% block scripts %}{% endblock %}
+</body>
+</html>

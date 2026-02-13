@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% set title = "LearnSphere — Settings" %}
+
+{% block content %}
+  <div class="hero">
+    <h1>Settings</h1>
+    <p>Learning profile and API key (stored in this browser).</p>
+  </div>
+
+  <div class="form">
+    <h2 style="margin-bottom:10px">Learning profile</h2>
+    <div class="row">
+      <div>
+        <label for="learningLevel">Learning Level</label>
+        <select id="learningLevel" class="input">
+          <option value="beginner">Beginner</option>
+          <option value="intermediate" selected>Intermediate</option>
+          <option value="advanced">Advanced</option>
+        </select>
+      </div>
+      <div>
+        <label for="languageDisplay">Language</label>
+        <input id="languageDisplay" class="input" value="English" disabled readonly/>
+      </div>
+    </div>
+    <div style="margin-top:12px">
+      <label class="checkbox-label">
+        <input type="checkbox" id="ragEnabled" checked/>
+        <span>Experimental: Use RAG with scikit-learn docs (ground text answers)</span>
+      </label>
+    </div>
+    <div class="btn-row" style="margin-top:12px">
+      <button id="saveProfile" class="btn success" type="button">Save</button>
+    </div>
+  </div>
+
+  <div class="form" style="margin-top:24px">
+    <h2 style="margin-bottom:10px">API Key</h2>
+    <label for="apiKey">Gemini API Key</label>
+    <input id="apiKey" class="input" placeholder="AIza..."/>
+    <div class="btn-row" style="margin-top:12px">
+      <button id="saveKey" class="btn success" type="button">Save</button>
+      <button id="clearKey" class="btn danger" type="button">Clear</button>
+    </div>
+    <p class="muted" style="margin-top:10px">Status: <span id="keyStatus"></span></p>
+  </div>
+
+  <div class="result">
+    <h2>Model Info</h2>
+    <pre><code id="modelInfo"></code></pre>
+  </div>
+{% endblock %}
+
+{% block scripts %}
+  <script src="{{ url_for('static', filename='js/settings.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% set title = "LearnSphere — About" %}
+
+{% block content %}
+  <div class="hero">
+    <h1>About LearnSphere</h1>
+    <p>
+      LearnSphere is a multi‑modal learning assistant for Machine Learning. It generates explanations,
+      code examples, audio lessons, and visual learning aids, powered by Google Gemini. Content is
+      personalized to your learning level (beginner, intermediate, or advanced).
+    </p>
+  </div>
+
+  <div class="result">
+    <h2>What you can do</h2>
+    <ul class="muted">
+      <li>Get ML concept explanations at different depth levels (text streams as it’s generated).</li>
+      <li>Generate runnable code (e.g. Python, Java) and download it; code streams as it’s generated.</li>
+      <li>Create audio lessons (script + MP3 via gTTS) tailored to your level.</li>
+      <li>Generate ML concept diagrams and flowcharts with Gemini image generation.</li>
+      <li>View and manage your activity in History (delete items or clear all).</li>
+      <li>Optionally enable experimental RAG with scikit-learn docs to ground text answers.</li>
+    </ul>
+
+    <h2 style="margin-top:14px">Privacy &amp; storage</h2>
+    <p class="muted">
+      Generated files (code, audio, images) are stored locally in the <code>storage/</code> directory on the server you run. Your API key is stored only in your browser’s localStorage when you save it in Settings; the server does not store your key and uses it only for the request at hand.
+    </p>
+
+    <h2 style="margin-top:14px">Built with</h2>
+    <p class="muted">
+      Flask, Google Gemini (text and image), gTTS. Optional RAG over scikit-learn docs (experimental).
+    </p>
+  </div>
+{% endblock %}

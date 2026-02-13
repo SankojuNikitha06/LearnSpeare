@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% set title = "LearnSphere — Not Found" %}
+
+{% block content %}
+  <div class="hero">
+    <h1>404 — Page Not Found</h1>
+    <p>The page you are looking for doesn’t exist.</p>
+    <div class="btn-row" style="margin-top:14px">
+      <a class="btn primary" href="{{ url_for('home') }}">Go Home</a>
+    </div>
+  </div>
+{% endblock %}

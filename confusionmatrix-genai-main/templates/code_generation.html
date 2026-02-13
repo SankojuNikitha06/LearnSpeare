@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% set title = "LearnSphere — Code Generation" %}
+
+{% block content %}
+  <div class="hero">
+    <h1>Code Generation</h1>
+    <p>Generate ML-related code that's ready to run in your chosen language—download and run locally.</p>
+  </div>
+
+  <form id="codeForm" class="form">
+    <div class="row">
+      <div>
+        <label for="topic">ML topic or code you want</label>
+        <input id="topic" class="input" placeholder="e.g., logistic regression, k-means clustering, decision tree with sklearn" />
+      </div>
+      <div>
+        <label for="language">Language</label>
+        <select id="language">
+          <option value="python">Python</option>
+          <option value="java">Java</option>
+          <option value="javascript">JavaScript</option>
+          <option value="cpp">C++</option>
+        </select>
+      </div>
+      <div>
+        <label for="depth">Detail Level</label>
+        <select id="depth">
+          <option value="minimal">Minimal</option>
+          <option value="detailed" selected>Detailed</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="btn-row" style="margin-top:12px">
+      <button id="generateBtn" class="btn primary" type="submit">Generate Code</button>
+      <button id="copyBtn" class="btn" type="button">Copy Code</button>
+      <a id="downloadLink" class="btn success" style="display:none" href="#">Download</a>
+    </div>
+    <div id="codeMessage" class="code-message" aria-live="polite" role="alert" hidden></div>
+  </form>
+
+  <div class="result">
+    <div id="appliedBadge" class="applied-badge" style="display:none;"></div>
+    <h2>Status</h2>
+    <div id="status" class="muted"></div>
+
+    <h2 style="margin-top:14px">Dependencies</h2>
+    <pre><code id="deps"></code></pre>
+
+    <h2 style="margin-top:14px" id="codeHeading">Code</h2>
+    <pre><code id="code"></code></pre>
+
+    <h2 style="margin-top:14px">How to Run</h2>
+    <pre><code id="run"></code></pre>
+  </div>
+{% endblock %}
+
+{% block scripts %}
+  <script src="{{ url_for('static', filename='js/code_generation.js') }}"></script>
+{% endblock %}

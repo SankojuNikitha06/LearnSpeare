@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% set title = "LearnSphere — Error" %}
+
+{% block content %}
+  <div class="hero">
+    <h1>500 — Internal Error</h1>
+    <p>Something went wrong. Check your server logs for details.</p>
+    <div class="btn-row" style="margin-top:14px">
+      <a class="btn primary" href="{{ url_for('home') }}">Go Home</a>
+      <a class="btn" href="{{ url_for('settings_page') }}">Settings</a>
+    </div>
+  </div>
+{% endblock %}

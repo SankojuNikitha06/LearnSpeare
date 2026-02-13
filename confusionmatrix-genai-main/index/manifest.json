@@ -1,0 +1,32 @@
+{
+  "created_at": "2026-02-11T13:32:27.169741Z",
+  "docs_root": "/home/student/Downloads/learnsphere/knowledge_base/sckitlearn",
+  "out_dir": "/home/student/Downloads/learnsphere/index",
+  "embed_model": "gemini-embedding-001",
+  "chunk_size": 1200,
+  "chunk_overlap": 200,
+  "batch_size": 64,
+  "strict_allowlist": true,
+  "allowed_dirs": [
+    "api",
+    "auto_examples",
+    "datasets",
+    "modules",
+    "tutorial"
+  ],
+  "allowed_root_files": [
+    "common_pitfalls.html",
+    "data_transforms.html",
+    "datasets.html",
+    "getting_started.html",
+    "glossary.html",
+    "model_selection.html",
+    "supervised_learning.html",
+    "unsupervised_learning.html",
+    "user_guide.html"
+  ],
+  "num_pages": 934,
+  "num_chunks": 8038,
+  "faiss_index": "faiss.index",
+  "meta_file": "chunks.jsonl"
+}

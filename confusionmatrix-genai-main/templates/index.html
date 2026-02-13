@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% set title = "LearnSphere — Home" %}
+
+{% block content %}
+  <div class="hero">
+    <h1>LearnSphere</h1>
+    <p>
+      A Generative AI–powered Machine Learning learning system. Personalized ML education through
+      concept explanation, code generation, audio lessons, and visual learning aids.
+    </p>
+    <div id="heroProfile" class="hero-profile-pill" style="display:none;"></div>
+    <div class="btn-row" style="margin-top:14px">
+      <a class="btn primary" href="{{ url_for('text_explanation_page') }}">Start with Text</a>
+      <a class="btn success" href="{{ url_for('settings_page') }}">Set API Key</a>
+    </div>
+  </div>
+
+  <div class="grid home-cards">
+    <div class="card card-personalized">
+      <span class="card-tag">Personalized</span>
+      <h3>📘 Concept Explanation</h3>
+      <p>Structured ML concept explanations (markdown) tailored to your level. Optional experimental RAG from scikit-learn docs.</p>
+      <div class="btn-row">
+        <a class="btn primary" href="{{ url_for('text_explanation_page') }}">Open Text Mode</a>
+      </div>
+    </div>
+
+    <div class="card card-personalized">
+      <span class="card-tag">Personalized</span>
+      <h3>🧠 Code Generation</h3>
+      <p>Generate runnable ML-related code (e.g. sklearn, models), detect dependencies, and download.</p>
+      <div class="btn-row">
+        <a class="btn primary" href="{{ url_for('code_generation_page') }}">Open Code Mode</a>
+      </div>
+    </div>
+
+    <div class="card card-personalized">
+      <span class="card-tag">Personalized</span>
+      <h3>🎧 Audio Lessons</h3>
+      <p>Create narrated ML lessons (script + MP3) adapted to your level for on‑the‑go learning.</p>
+      <div class="btn-row">
+        <a class="btn primary" href="{{ url_for('audio_learning_page') }}">Open Audio Mode</a>
+      </div>
+    </div>
+
+    <div class="card card-personalized">
+      <span class="card-tag">Personalized</span>
+      <h3>🧩 Visual Learning Aids</h3>
+      <p>Generate ML concept diagrams (flowcharts, architecture) with Gemini, tuned to your level.</p>
+      <div class="btn-row">
+        <a class="btn primary" href="{{ url_for('image_visualization_page') }}">Open Visual Mode</a>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block scripts %}
+  <script>
+    (function() {
+      var el = document.getElementById("heroProfile");
+      if (el && typeof getProfile === "function") {
+        var p = getProfile();
+        var raw = p.level || "intermediate";
+        var level = raw ? raw.charAt(0).toUpperCase() + raw.slice(1).toLowerCase() : "Intermediate";
+        el.innerHTML = "Your level: <strong>" + level + "</strong> &middot; <a href=\"/settings\">Change in Settings</a>";
+        el.style.display = "block";
+      }
+    })();
+  </script>
+{% endblock %}
